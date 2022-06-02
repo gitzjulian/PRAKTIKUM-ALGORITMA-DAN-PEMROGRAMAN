@@ -1,0 +1,63 @@
+#include <iostream>
+
+using namespace std;
+
+struct player_t {
+  int id;
+  string nama;
+  string asalDaerah;
+  string skill;
+};
+
+int main() {
+
+
+  player_t player[] = {
+    {
+      1,
+      "Roger",
+      "Tasikmalaya",
+      "Membaca"
+    },
+    {
+      2,
+      "Lesley",
+      "Kalimantan",
+      "Menulis"
+    },
+    {
+      3,
+      "Gatot",
+      "Jogja",
+      "Main game"
+    },
+    {
+      4,
+      "Kagura",
+      "Nganjuk",
+      "Ngobrol"
+    },
+    {
+      5,
+      "Guin",
+      "Jakarta",
+      "Nonton"
+    }
+  };
+
+  int idPlayerYangHarusDikeluarkan = 4;
+
+  player[1].nama = "Roger";
+
+  for (int i = 0; i < 5; i++) {
+
+    if (player[i].id == idPlayerYangHarusDikeluarkan) {
+      cout << "Bikin berisik dikelas " << player[i].nama << " ayo keluarkan ! \n";
+
+      break;
+    }
+
+    cout << "lihat itu si " << player[i].nama << " sedang " << player[i].skill << "\n";
+  }
+
+}
