@@ -6,37 +6,38 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define KOTAK char(178)
+#define KOTAK char(178) //definisikan dahulu objek yg akan dibuat dan dipakai
 #define BATAS_KIRI 16
 #define BATAS_KANAN 59
 #define BATANG char(219)
 
 using namespace std;
 
-struct Pemain {
+struct Pemain { //Struct dan pointer, untuk mendeklarasikan nama dan nim pemain yang tampil dilayar utama
     char *nama;
     char *nim;
+    char *prodi;
     char *kelas;
-    
+
 };
        
-void gotoxy(int x, int y)
+void gotoxy(int x, int y)// mendeklarasikan posisi kursor pada layar dan posisi sumbu x dan y
 {
         COORD koord = {x, y};
         SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), koord);
 }
 
-void Credit()
+void Credit() //deklarasi menapilkan menu kontrol games
 {
     gotoxy(BATAS_KANAN + 5, 15); cout << "KONTROL";
-    gotoxy(BATAS_KANAN + 5, 16); cout << "W : ATAS ";
-    gotoxy(BATAS_KANAN + 5, 17); cout << "S : BAWAH";
-    gotoxy(BATAS_KANAN + 5, 18); cout << "D : KANAN";
-    gotoxy(BATAS_KANAN + 5, 19); cout << "A : KIRI";
+    gotoxy(BATAS_KANAN + 5, 16); cout << "W : ATAS "; //kontrol atas
+    gotoxy(BATAS_KANAN + 5, 17); cout << "S : BAWAH"; //kontrol bawah
+    gotoxy(BATAS_KANAN + 5, 18); cout << "D : KANAN"; //kontrol kanan
+    gotoxy(BATAS_KANAN + 5, 19); cout << "A : KIRI"; //kontrol kiri
     
 }
 
-void gambarLatar()
+void gambarLatar() //deklarasi gambar latar games kiri dan kanan
 {
     for(int i = 0; i <= 24; i++)
     {
@@ -46,7 +47,7 @@ void gambarLatar()
         gotoxy(BATAS_KANAN, i); cout << KOTAK << KOTAK;
     }
 }
-void gambarJalan(int spasi, int awal)
+void gambarJalan(int spasi, int awal) //deklarasi gambar jalan kiri dan kanan
 {
       for(int i = awal + 1; i <= 24; i += spasi)
       {
@@ -62,7 +63,7 @@ int abs(int a)
     if(a < 0) return -a;
 }
 
-void batangDarah(int a)
+void batangDarah(int a) //deklarasi tampilan sisa nyawa
 {
     gotoxy(1, 4);
     cout << "NYAWA : ";
@@ -77,7 +78,7 @@ void batangDarah(int a)
     }
 }
 
-void jarak(int iJarak)
+void jarak(int iJarak) //deklarasi tampilan jarak
 {
     gotoxy(1, 7);
     cout << "JARAK :";
@@ -85,7 +86,7 @@ void jarak(int iJarak)
     cout << iJarak;
 }
 
-void Speed(int speed)
+void Speed(int speed) //deklarasi tampilan kecepatan
 {
     gotoxy(1, 10);
     cout << "KECEPATAN :";
@@ -95,7 +96,7 @@ void Speed(int speed)
     cout << speed;
 }
 
-class car {
+class car { //deklarasi class tampilan gambar mobil
   public :
     int x,y,darah, kebal;
     bool exis;
@@ -117,15 +118,15 @@ class car {
         x = a;
         y = b;
     }
-    void keKiri()
+    void keKiri() 
     {
-      if(x > 20)
+      if(x > 20) //penggunaan funtion dan looping
        {
          hapus();
          x -= 1;
        }
     }
-    void keKanan()
+    void keKanan() //menggerakkan mobil kekanan
     {
        if(x + 2 < 56)
        {
@@ -133,7 +134,7 @@ class car {
          x += 1;
        }
     }
-    void keBawah()
+    void keBawah() //menggerakkan mobil kebawah
     {
        if(y + 3 <= 23)
        {
@@ -141,7 +142,7 @@ class car {
             y += 1;
        }
     }
-    void keAtas()
+    void keAtas() //menggerakkan mobil keatas
     {
         if(y + 3 > 3)
         {
@@ -156,7 +157,7 @@ class car {
         gotoxy(x+1, y+2); cout << " ";
         gotoxy(x, y+3);   cout << "   ";
     }
-    bool cekTabrakan(car a)
+    bool cekTabrakan(car a) //fungsi mengecek tabrakan dgn rintangan
     {
         if((a.y >= y && a.y <= y+3) && (abs(a.x - x) < 3))
         {
@@ -166,7 +167,7 @@ class car {
             return false;
         }
     }
-    void gores()
+    void gores() //fungsi matrix dan array
     {
         for(int i = y; i <= (y + 3); i++)
         {
@@ -181,7 +182,7 @@ class car {
             }
         }
     }
-    void buatGambar()
+    void buatGambar() //fungsi matrix gambar
     {
                  if(kebal == 0)
                  {
@@ -211,7 +212,7 @@ void tidur(int a)
     while((clock() - now) < a) {};
 }
 
-void opening()
+void opening() //deklarasi games dimulai, meghitung mundur mulai games
 {
     tulisTengah("Bersedia", 10);
     tidur(1000);
@@ -225,16 +226,17 @@ void opening()
     tulisTengah(" ", 10);
 }
 
-int main()
+int main() //lanjutan pointer dan struct, menampilkan nama pemain
 {
     struct Pemain p;
     p.nama="Sigit Julianto";
     p.nim="1217050132";
+    p.prodi="Teknik Informatika";
     p.kelas="F";
     
  int spk = 0;
  float fSpk = 0;
-  while(spk <= 0)
+  while(spk <= 0) //looping
   {
     system("cls");
     tulisTengah("GAME HALANG RINTANG", 10);
@@ -245,6 +247,7 @@ int main()
     printf("## NAMA PEMAIN ##\n");
     printf("Nama: %s\n", p.nama);
     printf("NIM: %s\n", p.nim);
+    printf("Prodi: %s\n", p.prodi);
     printf("Kelas: %s\n", p.kelas);
     printf("\n");
     printf("MASUKKAN ANGKA:\n");
@@ -280,7 +283,7 @@ int main()
                 control = getch();
                 control = toupper(control);
             }
-        switch (control)
+        switch (control) //fungsi kontrol arah gerakan
             {
                 case 'W' : pemainUtama.keAtas(); break;
                 case 'S' : pemainUtama.keBawah(); break;
@@ -290,7 +293,7 @@ int main()
         pemainUtama.buatGambar();
 
         //generate musuh
-        for(int i = 0; i <= 2; i++)
+        for(int i = 0; i <= 2; i++) //penerapan peggunaan matrix
         {
            if(enemy[i].exis == true)
            {
@@ -338,17 +341,15 @@ int main()
         control = ' ';
         tidur(spk - iJarak / 200);
     }
-    spk -= iJarak / 200;
+    spk -= iJarak / 200; //penampilkan score akhir
     system("cls");
-    gotoxy(20, 12); cout << "Game Berakhir Score Anda : " << (iJarak / spk) + pemainUtama.darah * 100;
-    gotoxy(20, 13); cout << "Total Waktu Bermain      : " << (clock() - before) / 1000 << " Detik";
+    gotoxy(20, 12); cout << "Game Berakhir Score Anda : " << (iJarak / spk) + pemainUtama.darah * 100; //jarak dibagi kecepatan ditambah sisa nyawa dikali 100
+    gotoxy(20, 13); cout << "Total Waktu Bermain      : " << (clock() - before) / 1000 << " Detik"; // total waktu bermain (waktu sekarang-waku bermain)/1000
     tulisTengah("=========================================", 16);
-    tulisTengah("Terimakasih telah bermain.", 17);
+    tulisTengah("Terimakasih telah bermain.", 17); //tampilan terimaasih
     tulisTengah("=========================================", 20);
-    tidur(5000);
+    tidur(5000); //jeda sebelum layar ditutup otomatis
     getch();
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
-
-
+    
     return 0;
 }
