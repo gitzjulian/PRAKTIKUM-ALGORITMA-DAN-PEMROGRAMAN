@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iostream>
 #include <windows.h>
 #include <conio.h>
 #include <time.h>
@@ -346,7 +345,8 @@ int main() //lanjutan pointer dan struct, menampilkan nama pemain
     gotoxy(20, 12); cout << "Game Berakhir Score Anda : " << (iJarak / spk) + pemainUtama.darah * 100; //jarak dibagi kecepatan ditambah sisa nyawa dikali 100
     gotoxy(20, 13); cout << "Total Waktu Bermain      : " << (clock() - before) / 1000 << " Detik"; // total waktu bermain (waktu sekarang-waku bermain)/1000
     tulisTengah("=========================================", 16);
-    tulisTengah("Terimakasih telah bermain.", 17); //tampilan terimaasih
+    tulisTengah("Terimakasih telah bermain.", 17);
+	tulisTengah("Semoga harimu menyenangkan.", 18); //tampilan terimakasih
     tulisTengah("=========================================", 20);
     tidur(5000); //jeda sebelum layar ditutup otomatis
     getch();
